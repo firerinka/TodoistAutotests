@@ -16,6 +16,7 @@ public class ProjectConfiguration {
         Configuration.browser = TEST_CONFIG.browser().toString();
         Configuration.browserVersion = TEST_CONFIG.browserVersion();
         Configuration.browserSize = TEST_CONFIG.browserSize();
+        Configuration.timeout = 10_000;
         if (TEST_CONFIG.isRemote()) {
             Configuration.remote = TEST_CONFIG.remoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();

@@ -16,15 +16,15 @@ public interface TestConfig extends Config {
     Browser browser();
 
     @Key("browserVersion")
-    @DefaultValue("106.0")
+    @DefaultValue("107.0")
     String browserVersion();
 
     @Key("browserSize")
-    @DefaultValue("1920x1080")
+    @DefaultValue("1280x1080")
     String browserSize();
 
     @Key("baseUrl")
-    @DefaultValue("https://www.jetbrains.com/ru-ru/")
+    @DefaultValue("https://todoist.com/")
     String baseUrl();
 
     @Key("isRemote")
