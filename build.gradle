@@ -1,0 +1,72 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.10.0'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group 'quru.qa'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.19.0",
+    selenideVersion = "6.9.0",
+    restAssuredVersion = "5.1.1",
+    appiumVersion = "8.1.1",
+    assertJVersion = "3.23.1",
+    junitVersion = "5.9.0",
+    aspectjVersion = "1.9.9.1",
+    slf4jVersion = "1.7.32",
+    ownerVersion = "1.0.4",
+    commonsIoVersion = "2.11.0"
+
+allure
+        {
+            report {
+                version.set(allureVersion)
+            }
+            adapter { // отвечает за появление папочки build/allure-results
+                aspectjWeaver.set(true) //обработка аннотации @Step
+                frameworks {
+                    junit5 { //название фреймворка
+                        adapterVersion.set(allureVersion) //версия интеграции фреймворка и Allure
+                    }
+                }
+            }
+        }
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "org.assertj:assertj-core:$assertJVersion",
+            "io.appium:java-client:$appiumVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.aspectj:aspectjweaver:$aspectjVersion",
+            "commons-io:commons-io:$commonsIoVersion",
+            "org.aeonbits.owner:owner:$ownerVersion"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
