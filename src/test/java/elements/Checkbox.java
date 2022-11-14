@@ -10,7 +10,7 @@ public class Checkbox extends Element {
         super(name, selector);
     }
 
-    @Step("В {this.name} выбрать checkbox  с названием {title}")
+    @Step("В '{this.name}' выбрать checkbox  с названием '{title}'")
     public void selectBoxByTitle(String title) {
         selector.$(byText(title)).click();
         System.out.println("В "+ this.name + " выбрать checkbox  с названием " + title);

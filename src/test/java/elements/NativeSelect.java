@@ -8,7 +8,7 @@ public class NativeSelect extends Element {
         super(name, selector);
     }
 
-    @Step("В selectе {this.name} выбираем значение {value}")
+    @Step("В selectе '{this.name}' выбираем значение '{value}'")
     public void selectValue(String value) {
         System.out.println("В selectе " + this.name + " выбираем значение " + value);
         selector.selectOption(value);

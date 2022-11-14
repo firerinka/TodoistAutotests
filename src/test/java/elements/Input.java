@@ -8,13 +8,13 @@ public class Input extends Element {
         super(name, selector);
     }
 
-    @Step("В поле {this.name} вводим значение {value}")
+    @Step("В поле '{this.name}' вводим значение '{value}'")
     public void setInputValue(String value) {
         System.out.println("В поле " + this.name + " вводим значение " + value);
         selector.setValue(value);
     }
 
-    @Step("В поле {this.name} выбираем значение {value} из autocomplete")
+    @Step("В поле '{this.name}' выбираем значение '{value}' из autocomplete")
     public void selectFromAutocompleteByFullValue(String value) {
         System.out.println("В поле " + this.name + " выбираем значение " + value + "из autocomplete");
         selector.setValue(value).pressEnter();

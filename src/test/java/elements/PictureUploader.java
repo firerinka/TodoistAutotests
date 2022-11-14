@@ -9,7 +9,7 @@ public class PictureUploader extends Element {
         super(name, selector);
     }
 
-    @Step("В Uploader {this.name} загружаем из ресурсов изображение {picturePath}")
+    @Step("В Uploader '{this.name}' загружаем из ресурсов изображение '{picturePath}'")
     public void uploadPicture(String picturePath) {
         System.out.println("В uploader {this.name} загружаем изображение {picturePath}");
         selector.uploadFromClasspath(picturePath);

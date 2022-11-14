@@ -8,7 +8,7 @@ public class Button extends Element {
         super(name, selector);
     }
 
-    @Step("Нажимаем кнопку {this.name}")
+    @Step("Нажимаем кнопку '{this.name}'")
     @Override
     public void click() {
         System.out.println("Нажимаем кнопку " + name);

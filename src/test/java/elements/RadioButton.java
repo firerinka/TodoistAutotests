@@ -10,7 +10,7 @@ public class RadioButton extends Element {
         super(name, selector);
     }
 
-    @Step("В radioButton {this.name} выбираем значение {labelName}")
+    @Step("В radioButton '{this.name}' выбираем значение '{labelName}'")
     public void setByLabelName(String labelName) {
         System.out.println("В radioButton " + this.name + "выбираем значение " + labelName);
         selector.$(byText(labelName)).click();
