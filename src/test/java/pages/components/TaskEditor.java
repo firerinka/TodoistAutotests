@@ -10,9 +10,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TaskEditor extends Element {
 
-    Input title = new Input("taskTitle", $(".richtextinput .notranslate"));
-    Input description = new Input("taskDescription", $(".task_editor__description_field"));
-    Button submit = new Button("submitTaskButton", $("[data-testid=task-editor-submit-button]"));
+    private final Input title = new Input("taskTitle", $(".richtextinput .notranslate"));
+    private final Input description = new Input("taskDescription", $(".task_editor__description_field"));
+    private final Button submit = new Button("submitTaskButton", $("[data-testid=task-editor-submit-button]"));
 
     public TaskEditor(String name, SelenideElement selector) {
         super(name, selector);
@@ -30,8 +30,8 @@ public class TaskEditor extends Element {
         return this;
     }
 
-    @Step("Нажимаем на кнопку {submit.name}")
-    public TaskEditor submitTask() {
+    @Step("Нажимаем на кнопку сохранения задачи")
+    public TaskEditor submitTaskByButton() {
         submit.click();
         return this;
     }
