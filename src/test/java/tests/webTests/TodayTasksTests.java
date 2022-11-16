@@ -1,24 +1,46 @@
 package tests.webTests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import allure.Layer;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.Cookie;
 import pages.TodayPage;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 
+@Owner("m.remneva")
+@Tag("web")
+@Layer("web")
+@Feature("Задачи 'Сегодня'")
 public class TodayTasksTests extends TestBase {
 
-    private TodayPage todayPage = new TodayPage();
+    private static TodayPage todayPage = new TodayPage();
+    private static final String URL_PART = "app/today/";
+
+    @BeforeAll
+    static void solveTimezoneIssue() {
+        setCookieStep();
+        open(URL_PART);
+        /* Комментарий для проверяющих:
+         Да, это костыль :)
+         не придумала ничего лучше, чтобы решить проблему с попапом,
+         который выскакивает при несовпадении таймзоны аккаунта с таймзоной окружения
+         без этого невозможно гонять тесты одновременно и локально, и на селенойде :( */
+        todayPage.checkLoaderIsNotVisible();
+        sleep(5000);
+        executeJavaScript("document.querySelector('.GB_iframe_html .timezone_button')?.click();");
+    }
 
     @BeforeEach
     void preparation() {
         setCookieStep();
-        open("");
+        open(URL_PART);
+        // Тоже костыль. По непонятной мне причине задачи не всегда сохраняются как удаленные.
+        // Оставляю пока так до момента, когда не придумаю что-то получше.
+        // TODO придумать, как от этого избавиться
         todayPage.removeAllTasks();
     }
 
@@ -72,7 +94,7 @@ public class TodayTasksTests extends TestBase {
                 .checkNoTasksToday();
     }
 
-    private void setCookieStep() {
+    private static void setCookieStep() {
         //TODO подумать, как получать куки запросом
         step("Set cookie to to browser", () -> {
             open("/static/home/features/get-more-done-1008.webp");

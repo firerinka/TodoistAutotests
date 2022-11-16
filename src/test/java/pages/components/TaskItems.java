@@ -1,8 +1,9 @@
 package pages.components;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import elements.Elements;
+
+import static com.codeborne.selenide.CollectionCondition.size;
 
 public class TaskItems extends Elements {
 
@@ -15,13 +16,15 @@ public class TaskItems extends Elements {
     }
 
     public void checkNoTasksPresent() {
-        selector.shouldHave(CollectionCondition.size(0));
+        selector.shouldHave(size(0));
     }
 
     public void removeAllTasks() {
-        while (this.selector.get(0).exists()) {
-            TaskItem item = new TaskItem("taskItem", this.selector.get(0));
+        while (this.selector.size() > 0) {
+            int tasksCount = this.selector.size();
+            TaskItem item = new TaskItem("taskItem", this.selector.get(tasksCount - 1));
             item.removeTaskItem();
+            this.selector.shouldHave(size(tasksCount - 1));
         }
     }
 }

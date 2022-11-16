@@ -1,6 +1,10 @@
 package tests.webTests;
 
+import allure.Layer;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.AuthPage;
 import pages.TodayPage;
@@ -8,6 +12,10 @@ import pages.TodayPage;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
+@Owner("m.remneva")
+@Tag("web")
+@Layer("web")
+@Feature("Авторизация")
 public class AuthTests extends TestBase {
 
     private final String URL_PART = "auth/login/";

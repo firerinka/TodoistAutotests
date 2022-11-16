@@ -8,6 +8,7 @@ import pages.components.TaskEditor;
 import pages.components.TaskItem;
 import pages.components.TaskItems;
 
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -29,7 +30,7 @@ public class TodayPage {
 
     @Step("Проверяем, что лоадер закрыт")
     public TodayPage checkLoaderIsNotVisible() {
-        loader.shouldNotBe(Condition.visible);
+        loader.should(disappear);
         return this;
     }
 
