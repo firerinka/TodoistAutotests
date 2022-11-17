@@ -3,8 +3,12 @@ package api.steps;
 import api.models.requests.TaskRequest;
 import api.models.responses.TaskResponse;
 import io.qameta.allure.Step;
+import io.restassured.path.json.JsonPath;
 
-import static api.specs.NewTaskSpecs.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static api.specs.TaskSpecs.*;
 import static io.restassured.RestAssured.given;
 
 public class TaskAPISteps {
@@ -23,12 +27,12 @@ public class TaskAPISteps {
     @Step("API: создаем новую задачу")
     public static TaskResponse newTaskCreation(TaskRequest request) {
         TaskResponse response = given()
-                .spec(newTaskRequestSpec)
+                .spec(taskRequestSpec)
                 .body(request)
                 .when()
                 .post()
                 .then()
-                .spec(newTaskResponseSpec)
+                .spec(taskResponseSpec)
                 .extract()
                 .as(TaskResponse.class);
 
@@ -42,7 +46,7 @@ public class TaskAPISteps {
         request.setDueString(due);
 
         String response = given()
-                .spec(newTaskRequestSpec)
+                .spec(taskRequestSpec)
                 .body(request)
                 .when()
                 .post()
@@ -51,5 +55,41 @@ public class TaskAPISteps {
                 .extract().body().asString();
 
         return response;
+    }
+
+    @Step("API: удаляем все задачи из аккаунта")
+    public static void cleanUpAllTasks() {
+        JsonPath response = given()
+                .spec(taskRequestSpec)
+                .when()
+                .get()
+                .then()
+                .spec(taskResponseSpec)
+                .extract()
+                .body().
+                jsonPath();
+
+        List<TaskResponse> tasks = Arrays.asList(response.getObject("$", TaskResponse[].class));
+
+        for (TaskResponse task : tasks) {
+            deleteTask(task);
+        }
+    }
+
+    @Step("API: Удаляем задачу c id='{id}'")
+    public static void deleteTask(Long id) {
+        given()
+                .spec(taskRequestSpec)
+                .basePath("tasks/" + id.toString())
+                .when()
+                .delete()
+                .then()
+                .spec(taskDeletionResponseSpec);
+    }
+
+    @Step("API: Удаляем задачу")
+    public static void deleteTask(TaskResponse task) {
+        Long id = task.getId();
+        deleteTask(id);
     }
 }

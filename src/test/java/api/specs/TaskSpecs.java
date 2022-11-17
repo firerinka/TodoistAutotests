@@ -10,8 +10,8 @@ import io.restassured.specification.ResponseSpecification;
 import static helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.with;
 
-public class NewTaskSpecs {
-    public static RequestSpecification newTaskRequestSpec = with()
+public class TaskSpecs {
+    public static RequestSpecification taskRequestSpec = with()
             .filter(withCustomTemplates())
             .basePath("tasks")
             .header("Authorization", "Bearer " + ProjectConfiguration.getApiToken())
@@ -19,7 +19,7 @@ public class NewTaskSpecs {
             .log().body()
             .contentType(ContentType.JSON);
 
-    public static ResponseSpecification newTaskResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification taskResponseSpec = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(LogDetail.STATUS)
             .log(LogDetail.BODY)
@@ -27,6 +27,13 @@ public class NewTaskSpecs {
 
     public static ResponseSpecification errorResponseSpec = new ResponseSpecBuilder()
             .expectStatusCode(400)
+            .log(LogDetail.STATUS)
+            .log(LogDetail.BODY)
+            .build();
+
+
+    public static ResponseSpecification taskDeletionResponseSpec = new ResponseSpecBuilder()
+            .expectStatusCode(204)
             .log(LogDetail.STATUS)
             .log(LogDetail.BODY)
             .build();

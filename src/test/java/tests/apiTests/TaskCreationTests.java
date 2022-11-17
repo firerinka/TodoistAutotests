@@ -6,13 +6,13 @@ import api.models.responses.TaskResponse;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
-import static api.steps.TaskAPISteps.newTaskCreation;
-import static api.steps.TaskAPISteps.newTaskCreationWithError;
+import static api.steps.TaskAPISteps.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,6 +65,11 @@ public class TaskCreationTests extends TestBase {
         step("Проверяем корректность сообщения об ошибке", () ->
                 assertThat(response).isEqualTo("Required argument is missing")
         );
+    }
+
+    @AfterEach
+    void cleanup() {
+        cleanUpAllTasks();
     }
 
 }

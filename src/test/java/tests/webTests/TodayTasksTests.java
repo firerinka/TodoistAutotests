@@ -8,6 +8,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.Cookie;
 import pageObjects.pages.TodayPage;
 
+import static api.steps.TaskAPISteps.cleanUpAllTasks;
+import static api.steps.TaskAPISteps.newTaskCreation;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
@@ -38,17 +40,15 @@ public class TodayTasksTests extends UITestBase {
 
     @BeforeEach
     void preparation() {
+        cleanUpAllTasks();
         setCookieStep();
-        open(URL_PART);
-        // Тоже костыль. По непонятной мне причине задачи не всегда сохраняются как удаленные.
-        // Оставляю пока так до момента, когда не придумаю что-то получше.
-        // TODO придумать, как от этого избавиться
-        todayPage.removeAllTasks();
     }
 
     @Test
     @DisplayName("Проверка создания задачи")
     public void taskCreationTest() {
+        open(URL_PART);
+
         String taskTitle = "title";
         String taskDescription = "description";
         todayPage
@@ -59,6 +59,8 @@ public class TodayTasksTests extends UITestBase {
     @Test
     @DisplayName("Проверка создания нескольких задач")
     public void tasksCreationTest() {
+        open(URL_PART);
+
         String taskTitle1 = "title1";
         String taskDescription1 = "description1";
         String taskTitle2 = "title2";
@@ -73,13 +75,18 @@ public class TodayTasksTests extends UITestBase {
     @Test
     @DisplayName("Проверка редактирования существующей задачи")
     public void taskEditingTest() {
-        //TODO потом сделать создание задачи через API
         String taskTitle1 = "title1";
         String taskDescription1 = "description1";
+        String taskDue = "Сегодня";
+
+        newTaskCreation(taskTitle1, taskDescription1, taskDue);
+
+        open(URL_PART);
+        todayPage.checkTaskItemContent(taskTitle1, taskDescription1);
+
         String taskTitle2 = "title2";
         String taskDescription2 = "description2";
         todayPage
-                .createNewTaskForToday(taskTitle1, taskDescription1)
                 .editTaskByIndex(taskTitle2, taskDescription2, 0)
                 .checkTaskItemContent(taskTitle2, taskDescription2, 0);
     }
@@ -87,11 +94,15 @@ public class TodayTasksTests extends UITestBase {
     @Test
     @DisplayName("Проверка завершения задачи")
     public void taskCompletionTest() {
-        //TODO потом сделать создание задачи через API
         String taskTitle = "title";
         String taskDescription = "description";
+        String taskDue = "Сегодня";
+
+        newTaskCreation(taskTitle, taskDescription, taskDue);
+
+        open(URL_PART);
+
         todayPage
-                .createNewTaskForToday(taskTitle, taskDescription)
                 .completeTaskByIndex(0)
                 .checkNoTasksToday();
     }
@@ -108,7 +119,6 @@ public class TodayTasksTests extends UITestBase {
 
     @AfterEach
     void cleanup() {
-        //TODO заменить на очистку через API
-        todayPage.removeAllTasks();
+        cleanUpAllTasks();
     }
 }
