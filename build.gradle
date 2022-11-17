@@ -21,7 +21,8 @@ def allureVersion = "2.19.0",
     aspectjVersion = "1.9.9.1",
     slf4jVersion = "1.7.32",
     ownerVersion = "1.0.4",
-    commonsIoVersion = "2.11.0"
+    commonsIoVersion = "2.11.0",
+    jacksonVersion = "2.13.4"
 
 allure
         {
@@ -52,7 +53,8 @@ dependencies {
             "org.slf4j:slf4j-simple:$slf4jVersion",
             "org.aspectj:aspectjweaver:$aspectjVersion",
             "commons-io:commons-io:$commonsIoVersion",
-            "org.aeonbits.owner:owner:$ownerVersion"
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     )
 }
 
@@ -76,6 +78,6 @@ tasks.withType(Test) {
 
 task webTests(type: Test) {
     useJUnitPlatform {
-        includeTags 'web'
+        includeTags 'web', 'api'
     }
 }

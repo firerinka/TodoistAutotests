@@ -1,11 +1,12 @@
 package tests.webTests;
 
 import allure.Layer;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Cookie;
-import pages.TodayPage;
+import pageObjects.pages.TodayPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -14,8 +15,9 @@ import static io.qameta.allure.Allure.step;
 @Owner("m.remneva")
 @Tag("web")
 @Layer("web")
+@Epic("Задачи")
 @Feature("Задачи 'Сегодня'")
-public class TodayTasksTests extends TestBase {
+public class TodayTasksTests extends UITestBase {
 
     private static TodayPage todayPage = new TodayPage();
     private static final String URL_PART = "app/today/";
@@ -83,7 +85,7 @@ public class TodayTasksTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка закомпличивания задачи")
+    @DisplayName("Проверка завершения задачи")
     public void taskCompletionTest() {
         //TODO потом сделать создание задачи через API
         String taskTitle = "title";

@@ -27,6 +27,14 @@ public interface TestConfig extends Config {
     @DefaultValue("https://todoist.com/")
     String baseUrl();
 
+    @Key("apiUrl")
+    @DefaultValue("https://api.todoist.com/rest/v2/")
+    String apiUrl();
+
+    @Key("apiToken")
+    @DefaultValue("77a110ac1192de22ec0e4a9038d30bfe7fd5ce32")
+    String apiToken();
+
     @Key("isRemote")
     @DefaultValue("false")
     boolean isRemote();

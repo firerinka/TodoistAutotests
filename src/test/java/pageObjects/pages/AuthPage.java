@@ -1,8 +1,8 @@
-package pages;
+package pageObjects.pages;
 
 import com.codeborne.selenide.Condition;
-import elements.Button;
-import elements.Input;
+import pageObjects.elements.Button;
+import pageObjects.elements.Input;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byAttribute;

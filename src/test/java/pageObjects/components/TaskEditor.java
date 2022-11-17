@@ -1,9 +1,9 @@
-package pages.components;
+package pageObjects.components;
 
 import com.codeborne.selenide.SelenideElement;
-import elements.Button;
-import elements.Element;
-import elements.Input;
+import pageObjects.elements.Button;
+import pageObjects.elements.Element;
+import pageObjects.elements.Input;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;

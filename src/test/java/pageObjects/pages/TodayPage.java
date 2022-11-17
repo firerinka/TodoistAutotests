@@ -1,12 +1,12 @@
-package pages;
+package pageObjects.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import elements.Button;
+import pageObjects.elements.Button;
 import io.qameta.allure.Step;
-import pages.components.TaskEditor;
-import pages.components.TaskItem;
-import pages.components.TaskItems;
+import pageObjects.components.TaskEditor;
+import pageObjects.components.TaskItem;
+import pageObjects.components.TaskItems;
 
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
@@ -47,7 +47,7 @@ public class TodayPage {
         return this;
     }
 
-    @Step("Редактируем существующую задачу c indexом '{index}' через редактор")
+    @Step("Редактируем существующую задачу c номером '{index}' через редактор")
     public TodayPage editTaskByIndex(String titleValue, String descriptionValue, int index) {
         TaskItem item = taskItems.getTaskItemByIndex(index);
         item.openTaskEditor();
@@ -57,7 +57,7 @@ public class TodayPage {
         return this;
     }
 
-    @Step("Закомпличиваем существующую задачу c indexом '{index}'")
+    @Step("Завершаем задачу c номером '{index}'")
     public TodayPage completeTaskByIndex(int index) {
         TaskItem item = taskItems.getTaskItemByIndex(index);
         item.completeTask();
@@ -77,7 +77,7 @@ public class TodayPage {
         return this;
     }
 
-    @Step("Проверяем контент задачи с индексом '{index}'")
+    @Step("Проверяем контент задачи с номером '{index}'")
     public TodayPage checkTaskItemContent(String titleValue, String descriptionValue, int index) {
         TaskItem item = taskItems.getTaskItemByIndex(index);
         item

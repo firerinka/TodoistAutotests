@@ -6,8 +6,8 @@ import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.AuthPage;
-import pages.TodayPage;
+import pageObjects.pages.AuthPage;
+import pageObjects.pages.TodayPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -16,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 @Tag("web")
 @Layer("web")
 @Feature("Авторизация")
-public class AuthTests extends TestBase {
+public class AuthTests extends UITestBase {
 
     private final String URL_PART = "auth/login/";
     private AuthPage authPage = new AuthPage();
@@ -29,13 +29,13 @@ public class AuthTests extends TestBase {
             open(URL_PART)
         );
 
-        step("Вводим логин и пароль", () -> {
+        step("Пытаемся авторизоваться", () -> {
             authPage.enterEmail("m.remneva.test@gmail.com")
                     .enterPassword("5YHEiSRquW2u")
                     .submit();
         });
 
-        step("Проверяем, что открылась страница 'Сегодня'", () -> {
+        step("Проверяем успешность авторизации, открылась страница 'Сегодня'", () -> {
             todayPage.checkTitle("Сегодня");
         });
     }
@@ -47,13 +47,13 @@ public class AuthTests extends TestBase {
                 open(URL_PART)
         );
 
-        step("Вводим логин и пароль", () -> {
+        step("Пытаемся авторизоваться", () -> {
             authPage.enterEmail("m.remneva.test@gmail.com")
                     .enterPassword("1234567890")
                     .submit();
         });
 
-        step("Проверяем, что появилась сообщение об ошибке", () -> {
+        step("Проверяем, что появилось сообщение об ошибке", () -> {
             authPage.checkAuthErrorMessage();
         });
     }
@@ -65,13 +65,13 @@ public class AuthTests extends TestBase {
                 open(URL_PART)
         );
 
-        step("Вводим логин и пароль", () -> {
+        step("Пытаемся авторизоваться", () -> {
             authPage.enterEmail("test@test.com")
                     .enterPassword("1234567890")
                     .submit();
         });
 
-        step("Проверяем, что появилась сообщение об ошибке", () -> {
+        step("Проверяем, что появилось сообщение об ошибке", () -> {
             authPage.checkAuthErrorMessage();
         });
     }

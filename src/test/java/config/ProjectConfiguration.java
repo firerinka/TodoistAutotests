@@ -8,7 +8,7 @@ public class ProjectConfiguration {
     public static final TestConfig TEST_CONFIG = ConfigReader.Instance.read();
 
     public static void apiConfig() {
-        RestAssured.baseURI = TEST_CONFIG.baseUrl();
+        RestAssured.baseURI = TEST_CONFIG.apiUrl();
     }
 
     public static void webConfig() {
@@ -32,5 +32,9 @@ public class ProjectConfiguration {
 
     public static Boolean isRemote() {
         return TEST_CONFIG.isRemote();
+    }
+
+    public static String getApiToken() {
+        return TEST_CONFIG.apiToken();
     }
 }

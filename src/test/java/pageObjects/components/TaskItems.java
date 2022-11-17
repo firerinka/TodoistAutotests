@@ -1,7 +1,7 @@
-package pages.components;
+package pageObjects.components;
 
 import com.codeborne.selenide.ElementsCollection;
-import elements.Elements;
+import pageObjects.elements.Elements;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 
