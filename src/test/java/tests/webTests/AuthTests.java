@@ -23,7 +23,7 @@ public class AuthTests extends UITestBase {
     private TodayPage todayPage = new TodayPage();
 
     @Test
-    @DisplayName("Проверка авторизации с верными данными")
+    @DisplayName("Авторизации с верными данными")
     public void successfulAuthTest() {
         step("Открываем страницу авторизации", () ->
             open(URL_PART)
@@ -41,7 +41,7 @@ public class AuthTests extends UITestBase {
     }
 
     @Test
-    @DisplayName("Проверка ошибки авторизации с неверным паролем")
+    @DisplayName("Ошибка авторизации с неверным паролем")
     public void wrongPasswordAuthTest() {
         step("Открываем страницу авторизации", () ->
                 open(URL_PART)
@@ -59,7 +59,7 @@ public class AuthTests extends UITestBase {
     }
 
     @Test
-    @DisplayName("Проверка ошибки авторизации для несуществующего пользователя")
+    @DisplayName("Ошибки авторизации для несуществующего пользователя")
     public void wrongEmailAuthTest() {
         step("Открываем страницу авторизации", () ->
                 open(URL_PART)

@@ -64,6 +64,13 @@ public class TodayPage {
         return this;
     }
 
+    @Step("Удаляем задачу c номером '{index}'")
+    public TodayPage deleteTaskByIndex(int index) {
+        TaskItem item = taskItems.getTaskItemByIndex(index);
+        item.removeTaskItem();
+        return this;
+    }
+
     @Step("Проверяем, что нет активных задач")
     public void checkNoTasksToday() {
         taskItems.checkNoTasksPresent();

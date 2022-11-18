@@ -8,8 +8,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.Cookie;
 import pageObjects.pages.TodayPage;
 
-import static api.steps.TaskAPISteps.cleanUpAllTasks;
-import static api.steps.TaskAPISteps.newTaskCreation;
+import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
@@ -40,12 +40,12 @@ public class TodayTasksTests extends UITestBase {
 
     @BeforeEach
     void preparation() {
-        cleanUpAllTasks();
+        cleanupAllTasks();
         setCookieStep();
     }
 
     @Test
-    @DisplayName("Проверка создания задачи")
+    @DisplayName("Создание новой задачи")
     public void taskCreationTest() {
         open(URL_PART);
 
@@ -57,7 +57,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
-    @DisplayName("Проверка создания нескольких задач")
+    @DisplayName("Создание нескольких задач")
     public void tasksCreationTest() {
         open(URL_PART);
 
@@ -73,7 +73,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
-    @DisplayName("Проверка редактирования существующей задачи")
+    @DisplayName("Редактирования существующей задачи")
     public void taskEditingTest() {
         String taskTitle1 = "title1";
         String taskDescription1 = "description1";
@@ -92,7 +92,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
-    @DisplayName("Проверка завершения задачи")
+    @DisplayName("Завершение существующей задачи")
     public void taskCompletionTest() {
         String taskTitle = "title";
         String taskDescription = "description";
@@ -107,10 +107,26 @@ public class TodayTasksTests extends UITestBase {
                 .checkNoTasksToday();
     }
 
+    @Test
+    @DisplayName("Удаление существующей задачи")
+    public void taskDeletionTest() {
+        String taskTitle = "title";
+        String taskDescription = "description";
+        String taskDue = "Сегодня";
+
+        newTaskCreation(taskTitle, taskDescription, taskDue);
+
+        open(URL_PART);
+
+        todayPage
+                .deleteTaskByIndex(0)
+                .checkNoTasksToday();
+    }
+
     private static void setCookieStep() {
         //TODO подумать, как получать куки запросом
         step("Set cookie to to browser", () -> {
-            open("/static/home/features/get-more-done-1008.webp");
+            open("/_next/static/images/logo_calendar_1e7f4d38ee669ac13f651a09552deaf6.webp");
             getWebDriver().manage().addCookie(
                     new Cookie("todoistd",
                             "fulc19zW+hHS0qpGH593BuGxjqI=?pCHK=gASVJAAAAAAAAACMIGNlMTU2ODViMTBhMTZjNjAyNGYxZDMxZDA4OGY4NjczlC4=&user_id=gASVBgAAAAAAAABKnSF/Ai4="));
@@ -119,6 +135,6 @@ public class TodayTasksTests extends UITestBase {
 
     @AfterEach
     void cleanup() {
-        cleanUpAllTasks();
+        cleanupAllTasks();
     }
 }

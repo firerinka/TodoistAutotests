@@ -3,15 +3,11 @@ package api.steps;
 import api.models.requests.TaskRequest;
 import api.models.responses.TaskResponse;
 import io.qameta.allure.Step;
-import io.restassured.path.json.JsonPath;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static api.specs.TaskSpecs.*;
 import static io.restassured.RestAssured.given;
 
-public class TaskAPISteps {
+public class TasCreationApiSteps {
     @Step("API: создаем новую задачу с параметрами 'content'='{content}', 'description'='{description}', 'due_string'='{due}'")
     public static TaskResponse newTaskCreation(String content, String description, String due) {
         TaskRequest request = new TaskRequest();
@@ -55,41 +51,5 @@ public class TaskAPISteps {
                 .extract().body().asString();
 
         return response;
-    }
-
-    @Step("API: удаляем все задачи из аккаунта")
-    public static void cleanUpAllTasks() {
-        JsonPath response = given()
-                .spec(taskRequestSpec)
-                .when()
-                .get()
-                .then()
-                .spec(taskResponseSpec)
-                .extract()
-                .body().
-                jsonPath();
-
-        List<TaskResponse> tasks = Arrays.asList(response.getObject("$", TaskResponse[].class));
-
-        for (TaskResponse task : tasks) {
-            deleteTask(task);
-        }
-    }
-
-    @Step("API: Удаляем задачу c id='{id}'")
-    public static void deleteTask(Long id) {
-        given()
-                .spec(taskRequestSpec)
-                .basePath("tasks/" + id.toString())
-                .when()
-                .delete()
-                .then()
-                .spec(taskDeletionResponseSpec);
-    }
-
-    @Step("API: Удаляем задачу")
-    public static void deleteTask(TaskResponse task) {
-        Long id = task.getId();
-        deleteTask(id);
     }
 }

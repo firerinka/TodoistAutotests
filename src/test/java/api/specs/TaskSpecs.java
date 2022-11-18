@@ -37,4 +37,9 @@ public class TaskSpecs {
             .log(LogDetail.STATUS)
             .log(LogDetail.BODY)
             .build();
+
+    public static ResponseSpecification simpleResponseSpec = new ResponseSpecBuilder()
+            .log(LogDetail.STATUS)
+            .log(LogDetail.BODY)
+            .build();
 }

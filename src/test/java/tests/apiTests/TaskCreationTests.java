@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
-import static api.steps.TaskAPISteps.*;
+import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TasCreationApiSteps.newTaskCreationWithError;
+import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Создание задач")
 public class TaskCreationTests extends TestBase {
     @Test
-    @DisplayName("Проверка создания новой задачи")
+    @DisplayName("Создание новой задачи")
     public void newTaskCreationTest() {
         String content = "Content";
         String description = "Description";
@@ -40,7 +42,7 @@ public class TaskCreationTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка создания новой задачи с единственным заполненным полем 'content'")
+    @DisplayName("Создания новой задачи с единственным заполненным полем 'content'")
     public void newSimpleTaskCreationTest() {
         String content = "Content";
         TaskRequest request = new TaskRequest();
@@ -69,7 +71,7 @@ public class TaskCreationTests extends TestBase {
 
     @AfterEach
     void cleanup() {
-        cleanUpAllTasks();
+        cleanupAllTasks();
     }
 
 }
