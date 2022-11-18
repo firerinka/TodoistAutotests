@@ -1,9 +1,9 @@
 {
   "base": {
-    "project": "${JOB_BASE_NAME}",
+    "project": "",
     "environment": "qa.guru",
     "comment": "",
-    "reportLink": "${BUILD_URL}",
+    "reportLink": "",
     "language": "en",
     "allureFolder": "allure-report/",
     "enableChart": true
