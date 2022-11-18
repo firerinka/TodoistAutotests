@@ -6,7 +6,7 @@ import config.ProjectConfiguration;
 import config.TestConfig;
 import drivers.BrowserstackMobileDriver;
 import drivers.LocalMobileDriver;
-import helpers.Attach;
+import helpers.AttachToRemove;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,13 +42,13 @@ public class TestBase {
 
     @AfterEach
     public void afterEach() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
+        AttachToRemove.screenshotAs("Last screenshot");
+        AttachToRemove.pageSource();
 
         if (config.mobileEnv().equals(BROWSERSTACK)) {
             String sessionId = sessionId().toString();
             closeWebDriver();
-            Attach.video(sessionId);
+            AttachToRemove.video(sessionId);
         } else {
             Selenide.closeWebDriver();
         }

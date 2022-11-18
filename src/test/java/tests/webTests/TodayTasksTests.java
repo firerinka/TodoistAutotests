@@ -5,14 +5,12 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Cookie;
 import pageObjects.pages.TodayPage;
 
 import static api.steps.TasCreationApiSteps.newTaskCreation;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static io.qameta.allure.Allure.step;
+import static helpers.Cookie.setCookieStep;
 
 @Owner("m.remneva")
 @Tag("web")
@@ -121,16 +119,6 @@ public class TodayTasksTests extends UITestBase {
         todayPage
                 .deleteTaskByIndex(0)
                 .checkNoTasksToday();
-    }
-
-    private static void setCookieStep() {
-        //TODO подумать, как получать куки запросом
-        step("Set cookie to to browser", () -> {
-            open("/_next/static/images/logo_calendar_1e7f4d38ee669ac13f651a09552deaf6.webp");
-            getWebDriver().manage().addCookie(
-                    new Cookie("todoistd",
-                            "fulc19zW+hHS0qpGH593BuGxjqI=?pCHK=gASVJAAAAAAAAACMIGNlMTU2ODViMTBhMTZjNjAyNGYxZDMxZDA4OGY4NjczlC4=&user_id=gASVBgAAAAAAAABKnSF/Ai4="));
-        });
     }
 
     @AfterEach

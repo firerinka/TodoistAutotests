@@ -1,10 +1,9 @@
 package tests.webTests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit5.BrowserPerTestStrategyExtension;
 import config.Browser;
 import config.ProjectConfiguration;
-import helpers.AttachOld;
+import helpers.Attach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tests.TestBase;
@@ -14,13 +13,13 @@ public class UITestBase extends TestBase {
 
     @AfterEach
     void addAttachments() {
-        AttachOld.screenshotAs("Last screenshot");
-        AttachOld.pageSource();
-        if (Configuration.browser.equals(Browser.CHROME.name())) {
-            AttachOld.browserConsoleLogs();
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        if (config.browser().equals(Browser.CHROME)) {
+            Attach.browserConsoleLogs();
         }
         if (config.isRemote()) {
-            AttachOld.addVideo(ProjectConfiguration.getVideoStorageUrl());
+            Attach.addWebVideo(ProjectConfiguration.getVideoStorageUrl());
         }
     }
 

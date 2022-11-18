@@ -30,10 +30,6 @@ public class ProjectConfiguration {
         return TEST_CONFIG.videoStorage();
     }
 
-    public static Boolean isRemote() {
-        return TEST_CONFIG.isRemote();
-    }
-
     public static String getApiToken() {
         return TEST_CONFIG.apiToken();
     }
