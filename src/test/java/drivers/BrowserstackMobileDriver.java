@@ -34,7 +34,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("browserstack.key", config.browserstackPassword());
 
         // Set URL of the application under test
-        mutableCapabilities.setCapability("app", config.appUrl());
+        mutableCapabilities.setCapability("apps", config.appUrl());
 
         // Specify device and os_version for testing
         mutableCapabilities.setCapability("device", config.mobileDeviceName());

@@ -41,6 +41,8 @@ public class LocalMobileDriver implements WebDriverProvider {
         options.setApp(app.getAbsolutePath());
         options.setAppPackage(config.appPackage());
         options.setAppActivity(config.appActivity());
+        options.setCapability("unicodeKeyboard", true);
+        options.setCapability("resetKeyboard", true);
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }

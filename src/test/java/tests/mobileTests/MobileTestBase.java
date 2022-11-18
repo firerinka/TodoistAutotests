@@ -11,13 +11,14 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static config.MobileEnvironment.BROWSERSTACK;
 import static config.MobileEnvironment.EMULATION;
 
-public class TestBase {
+public class MobileTestBase extends TestBase {
     private static TestConfig config = ProjectConfiguration.TEST_CONFIG;
 
     @BeforeAll

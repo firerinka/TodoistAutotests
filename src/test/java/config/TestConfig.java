@@ -56,15 +56,15 @@ public interface TestConfig extends Config {
     String appUrl();
 
     @Key("app.package")
-    @DefaultValue("org.wikipedia.alpha")
+    @DefaultValue("com.todoist")
     String appPackage();
 
     @Key("app.activity")
-    @DefaultValue("org.wikipedia.main.MainActivity")
+    @DefaultValue("com.todoist.alias.HomeActivityDefault")
     String appActivity();
 
     @Key("app.name")
-    @DefaultValue("app-alpha-universal-release.apk")
+    @DefaultValue("todoist.apk")
     String appName();
 
     @Key("device.deviceName")

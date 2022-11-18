@@ -20,7 +20,7 @@ import static helpers.Cookie.setCookieStep;
 public class TodayTasksTests extends UITestBase {
 
     private static TodayPage todayPage = new TodayPage();
-    private static final String URL_PART = "app/today/";
+    private static final String URL_PART = "apps/today/";
 
     @BeforeAll
     static void solveTimezoneIssue() {
