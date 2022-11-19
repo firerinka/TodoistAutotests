@@ -1,4 +1,5 @@
-# Проект по автоматизации тестирования страницы Jetbrains Products
+# Проект по автоматизации тестирования приложения Todoist
+
 ## :pushpin: Содержание:
 
 - [Использованный стек технологий](#computer-использованный-стек-технологий)
@@ -11,21 +12,28 @@
 ## :computer: Использованный стек технологий
 
 <p align="center">
-<img width="6%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg">
+<img width="6%" title="IntelliJ IDEA" src="images/logo/IntelijIDEA.svg">
 <img width="6%" title="Java" src="images/logo/Java.svg">
 <img width="6%" title="Selenide" src="images/logo/Selenide.svg">
 <img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
-<img width="6%" title="Allure Report" src="images/logo/Allure_Report.svg">
+<img width="6%" title="Allure TestOps" src="images/logo/AllureReport.svg">
+<img width="6%" title="Allure Report" src="images/logo/AllureTO.svg">
 <img width="6%" title="Gradle" src="images/logo/Gradle.svg">
 <img width="6%" title="JUnit5" src="images/logo/JUnit5.svg">
 <img width="6%" title="GitHub" src="images/logo/GitHub.svg">
 <img width="6%" title="Jenkins" src="images/logo/Jenkins.svg">
+<img width="6%" title="AndroidStudio" src="images/logo/AndroidStudio.svg">
+<img width="6%" title="Appium" src="images/logo/Appium.svg">
+<img width="6%" title="RestAssured" src="images/logo/RestAssured.png">
+<img width="6%" title="Browserstack" src="images/logo/Browserstack.svg">
 <img width="6%" title="Telegram" src="images/logo/Telegram.svg">
 </p>
 
 Автотесты написаны на <code>Java</code> с использованием <code>JUnit 5</code> и <code>Gradle</code>.
 Для UI-тестов использован фреймворк [Selenide](https://selenide.org/).
-Запуск тестов можно осуществлять локально или с помощью [Selenoid](https://aerokube.com/selenoid/).
+API тесты используют фреймворк [RestAssured](https://rest-assured.io/).
+Автотесты для мобильных устройств написаны с помощью [Selenide](https://selenide.org/) и [Appium](https://appium.io/).
+Запуск тестов можно осуществлять локально или в [Selenoid](https://aerokube.com/selenoid/) и [Browserstack](https://www.browserstack.com/).
 Также реализована сборка в <code>Jenkins</code> с формированием Allure-отчета и отправкой уведомления с результатами в <code>Telegram</code> после завершения прогона.
 
 Allure-отчет включает в себя:
@@ -80,7 +88,7 @@ gradle clean test -Denv=remote
 <img title="Jenkins Build" src="images/screenshots/jenkinsBuild.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Allure Report" src="images/logo/Allure_Report.svg"> Пример Allure-отчета
+## <img width="4%" style="vertical-align:middle" title="Allure Report" src="images/logo/AllureReport.svg"> Пример Allure-отчета
 ### Overview
 
 <p align="center">

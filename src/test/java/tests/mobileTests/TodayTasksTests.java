@@ -6,6 +6,7 @@ import io.appium.java_client.AppiumBy;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -28,13 +29,7 @@ public class TodayTasksTests extends MobileTestBase {
         String taskTitle = "title";
         String taskDescription = "description";
 
-        step("Создаем новую задачу", () -> {
-            $(AppiumBy.id("com.todoist:id/fab")).click();
-            $(AppiumBy.id("android:id/message")).sendKeys(taskTitle);
-            $(AppiumBy.id("com.todoist:id/description")).sendKeys(taskDescription);
-            $(AppiumBy.id("android:id/button1")).click();
-            $(AppiumBy.id("com.todoist:id/item")).click();
-        });
+        createNewTaskStep(taskTitle, taskDescription);
 
         step("Проверяем, что задача создана", () -> {
             $(AppiumBy.id("com.todoist:id/text")).shouldHave(Condition.text(taskTitle));
@@ -55,5 +50,16 @@ public class TodayTasksTests extends MobileTestBase {
     @AfterEach
     void cleanup() {
         cleanupAllTasks();
+    }
+
+    @Step("Создаем новую задачу с title='{taskTitle}', description='{taskDescription}'")
+    private void createNewTaskStep(String taskTitle, String taskDescription) {
+        step("Создаем новую задачу", () -> {
+            $(AppiumBy.id("com.todoist:id/fab")).click();
+            $(AppiumBy.id("android:id/message")).sendKeys(taskTitle);
+            $(AppiumBy.id("com.todoist:id/description")).sendKeys(taskDescription);
+            $(AppiumBy.id("android:id/button1")).click();
+            $(AppiumBy.id("com.todoist:id/item")).click();
+        });
     }
 }
