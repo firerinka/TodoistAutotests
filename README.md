@@ -1,4 +1,4 @@
-# Проект по автоматизации тестирования приложения Todoist
+# Проект по автоматизации тестирования приложения Todoist <img width="4%" style="vertical-align:middle" title="Jenkins" src="images/logo/todoist.png">
 
 ## :pushpin: Содержание:
 
