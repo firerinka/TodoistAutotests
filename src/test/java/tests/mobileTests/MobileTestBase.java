@@ -1,5 +1,6 @@
 package tests.mobileTests;
 
+import api.steps.UserSteps;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import config.ProjectConfiguration;
@@ -23,6 +24,8 @@ public class MobileTestBase extends TestBase {
 
     @BeforeAll
     public static void setup() throws Exception {
+        UserSteps.setTimezone("Europe/Moscow");
+
         if (config.mobileEnv().equals(BROWSERSTACK)) {
             Configuration.browser = BrowserstackMobileDriver.class.getName();
         } else if(config.mobileEnv().equals(EMULATION)) {
@@ -54,4 +57,5 @@ public class MobileTestBase extends TestBase {
             Selenide.closeWebDriver();
         }
     }
+
 }

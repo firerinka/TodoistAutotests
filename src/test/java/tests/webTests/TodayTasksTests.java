@@ -1,11 +1,16 @@
 package tests.webTests;
 
 import allure.Layer;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
 import pageObjects.pages.TodayPage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static api.steps.TasCreationApiSteps.newTaskCreation;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
@@ -22,20 +27,6 @@ public class TodayTasksTests extends UITestBase {
     private static TodayPage todayPage = new TodayPage();
     private static final String URL_PART = "app/today/";
 
-    @BeforeAll
-    static void solveTimezoneIssue() {
-        setCookieStep();
-        open(URL_PART);
-        /* Комментарий для проверяющих:
-         Да, это костыль :)
-         не придумала ничего лучше, чтобы решить проблему с попапом,
-         который выскакивает при несовпадении таймзоны аккаунта с таймзоной окружения
-         без этого невозможно гонять тесты одновременно и локально, и на селенойде :( */
-        todayPage.checkLoaderIsNotVisible();
-        sleep(5000);
-        executeJavaScript("document.querySelector('.GB_iframe_html .timezone_button')?.click();");
-    }
-
     @BeforeEach
     void preparation() {
         cleanupAllTasks();
@@ -44,6 +35,7 @@ public class TodayTasksTests extends UITestBase {
 
     @Test
     @DisplayName("Создание новой задачи")
+    @Tag("oneTest")
     public void taskCreationTest() {
         open(URL_PART);
 

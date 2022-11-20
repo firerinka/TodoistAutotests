@@ -81,3 +81,21 @@ task webTests(type: Test) {
         includeTags 'web', 'api'
     }
 }
+
+task mobileTests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'mobile'
+    }
+}
+
+task tests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'web', 'api', 'mobile'
+    }
+}
+
+task oneTest(type: Test) {
+    useJUnitPlatform {
+        includeTags 'oneTest'
+    }
+}

@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -45,8 +46,13 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("build", config.browserstackBuild());
         mutableCapabilities.setCapability("name", config.browserstackTestsName());
 
+        // Set timezone for device
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("browserstack.timezone", "Moscow");
+        desiredCapabilities.merge(mutableCapabilities);
+
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
-        return new RemoteWebDriver(getAppiumServerUrl(), mutableCapabilities);
+        return new RemoteWebDriver(getAppiumServerUrl(), desiredCapabilities);
     }
 }
