@@ -9,9 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import tests.TestBase;
 
-import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskApiSteps.*;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static io.qameta.allure.Allure.step;
@@ -22,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("api")
 @Epic("Задачи")
 @Feature("Завершение задач")
-public class TaskCompletionTests extends TestBase {
+public class TaskCompletionTests extends ApiTestBase {
     @Test
     @DisplayName("Завершение новой задачи")
     public void taskCompletionTest() {

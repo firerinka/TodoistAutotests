@@ -46,6 +46,10 @@ public interface TestConfig extends Config {
     @Key("videoStorage")
     String videoStorage();
 
+    @Key("timezone")
+    @DefaultValue("Europe/Moscow")
+    String timezone();
+
     @Key("browserstack.userName")
     String browserstackUserName();
 

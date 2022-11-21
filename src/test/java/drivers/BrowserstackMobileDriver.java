@@ -35,7 +35,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("browserstack.key", config.browserstackPassword());
 
         // Set URL of the application under test
-        mutableCapabilities.setCapability("apps", config.appUrl());
+        mutableCapabilities.setCapability("app", config.appUrl());
 
         // Specify device and os_version for testing
         mutableCapabilities.setCapability("device", config.mobileDeviceName());
@@ -48,7 +48,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
         // Set timezone for device
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("browserstack.timezone", "Moscow");
+        desiredCapabilities.setCapability("browserstack.timezone", config.timezone());
         desiredCapabilities.merge(mutableCapabilities);
 
         // Initialise the remote Webdriver using BrowserStack remote URL

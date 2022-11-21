@@ -2,23 +2,26 @@ package tests.webTests;
 
 import api.steps.UserSteps;
 import com.codeborne.selenide.junit5.BrowserPerTestStrategyExtension;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import config.Browser;
 import config.ProjectConfiguration;
+import config.TestConfig;
 import helpers.Attach;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
-import tests.TestBase;
 
 @ExtendWith({BrowserPerTestStrategyExtension.class})
-public class UITestBase extends TestBase {
+public class UITestBase {
+    private static TestConfig config = ProjectConfiguration.TEST_CONFIG;
+
     @BeforeAll
-    static void setTimezone() {
-        if (config.isRemote()) {
-            UserSteps.setTimezone("UTC");
-        } else {
-            UserSteps.setTimezone("Europe/Moscow");
-        }
+    public static void setup() {
+        UserSteps.setTimezone(config.timezone());
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        ProjectConfiguration.webConfig();
+        ProjectConfiguration.apiConfig();
     }
 
     @AfterEach
@@ -32,5 +35,4 @@ public class UITestBase extends TestBase {
             Attach.addWebVideo(ProjectConfiguration.getVideoStorageUrl());
         }
     }
-
 }

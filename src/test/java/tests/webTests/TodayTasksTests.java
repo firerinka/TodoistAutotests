@@ -1,18 +1,13 @@
 package tests.webTests;
 
 import allure.Layer;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
 import pageObjects.pages.TodayPage;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static com.codeborne.selenide.Selenide.*;
 import static helpers.Cookie.setCookieStep;
@@ -35,7 +30,6 @@ public class TodayTasksTests extends UITestBase {
 
     @Test
     @DisplayName("Создание новой задачи")
-    @Tag("oneTest")
     public void taskCreationTest() {
         open(URL_PART);
 

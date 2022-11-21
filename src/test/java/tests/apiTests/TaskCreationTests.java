@@ -10,10 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import tests.TestBase;
 
-import static api.steps.TasCreationApiSteps.newTaskCreation;
-import static api.steps.TasCreationApiSteps.newTaskCreationWithError;
+import static api.steps.TaskCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.newTaskCreationWithError;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("api")
 @Epic("Задачи")
 @Feature("Создание задач")
-public class TaskCreationTests extends TestBase {
+public class TaskCreationTests extends ApiTestBase {
     @Test
     @DisplayName("Создание новой задачи")
     public void newTaskCreationTest() {

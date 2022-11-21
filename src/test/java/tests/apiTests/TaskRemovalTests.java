@@ -9,9 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import tests.TestBase;
 
-import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskApiSteps.*;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static api.steps.TaskRemovalApiSteps.deleteTask;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("api")
 @Epic("Задачи")
 @Feature("Удаление задач")
-public class TaskRemovalTests extends TestBase {
+public class TaskRemovalTests extends ApiTestBase {
     @Test
     @DisplayName("Удаления существующей задачи")
     public void taskRemovalTest() {

@@ -7,7 +7,7 @@ import io.qameta.allure.Step;
 import static api.specs.TaskSpecs.*;
 import static io.restassured.RestAssured.given;
 
-public class TasCreationApiSteps {
+public class TaskCreationApiSteps {
     @Step("API: создаем новую задачу с параметрами 'content'='{content}', 'description'='{description}', 'due_string'='{due}'")
     public static TaskResponse newTaskCreation(String content, String description, String due) {
         TaskRequest request = new TaskRequest();

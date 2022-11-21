@@ -13,9 +13,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static api.steps.TasCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
-import static api.steps.UserSteps.setTimezone;
 import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
@@ -114,10 +113,11 @@ public class TodayTasksTests extends MobileTestBase {
 
     @Step("Авторизуемся в приложении и закрываем баннер про таймзону")
     public void login() {
-        //m.remneva.test@gmail.com
+        String email = "m.remneva.test@gmail.com";
         String pwd = "5YHEiSRquW2u";
         $(AppiumBy.id("com.todoist:id/btn_welcome_email")).click();
-        $(AppiumBy.id("com.google.android.gms:id/credential_avatar")).click();
+        $(AppiumBy.id("com.todoist:id/email_exists_input")).sendKeys(email);
+        $(AppiumBy.id("com.todoist:id/btn_continue_with_email")).click();
         $(AppiumBy.id("com.todoist:id/log_in_password")).sendKeys(pwd);
         $(AppiumBy.id("com.todoist:id/btn_log_in")).click();
         $(AppiumBy.id("com.todoist:id/toolbar")).should(Condition.exist);
@@ -131,9 +131,10 @@ public class TodayTasksTests extends MobileTestBase {
     @Step("Создаем новую задачу с title='{taskTitle}', description='{taskDescription}'")
     private void createNewTaskStep(String taskTitle, String taskDescription) {
         $(AppiumBy.id("com.todoist:id/fab")).click();
+        $(AppiumBy.id("android:id/message")).should(Condition.appear);
         $(AppiumBy.id("android:id/message")).sendKeys(taskTitle);
         $(AppiumBy.id("com.todoist:id/description")).sendKeys(taskDescription);
-        $(AppiumBy.id("android:id/button1")).click();
+        $(AppiumBy.id("com.todoist:id/menu_live_notifications")).click();
         $(AppiumBy.id("com.todoist:id/item")).click();
     }
 }

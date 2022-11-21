@@ -3,6 +3,8 @@ package tests.mobileTests;
 import api.steps.UserSteps;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.junit5.BrowserPerTestStrategyExtension;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import config.ProjectConfiguration;
 import config.TestConfig;
 import drivers.BrowserstackMobileDriver;
@@ -12,19 +14,22 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import tests.TestBase;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static config.MobileEnvironment.BROWSERSTACK;
 import static config.MobileEnvironment.EMULATION;
 
-public class MobileTestBase extends TestBase {
+@ExtendWith({BrowserPerTestStrategyExtension.class})
+public class MobileTestBase {
     private static TestConfig config = ProjectConfiguration.TEST_CONFIG;
 
     @BeforeAll
     public static void setup() throws Exception {
-        UserSteps.setTimezone("Europe/Moscow");
+        UserSteps.setTimezone(config.timezone());
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        ProjectConfiguration.apiConfig();
 
         if (config.mobileEnv().equals(BROWSERSTACK)) {
             Configuration.browser = BrowserstackMobileDriver.class.getName();
@@ -45,7 +50,7 @@ public class MobileTestBase extends TestBase {
     }
 
     @AfterEach
-    public void afterEach() {
+    public void addAttachments() {
         AttachToRemove.screenshotAs("Last screenshot");
         AttachToRemove.pageSource();
 
