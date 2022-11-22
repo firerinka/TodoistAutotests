@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Story("Удаление задач")
 public class TaskRemovalTests extends ApiTestBase {
     @Test
-    @DisplayName("Удаления существующей задачи")
+    @DisplayName("Удаление существующей задачи")
     public void taskRemovalTest() {
         String content = "Content";
         String description = "Description";
@@ -41,7 +41,7 @@ public class TaskRemovalTests extends ApiTestBase {
     }
 
     @Test
-    @DisplayName("Удаления завершенной задачи")
+    @DisplayName("Удаление завершенной задачи")
     public void completedTaskRemovalTest() {
         String content = "Content";
         String description = "Description";
