@@ -7,7 +7,7 @@
 - [Сборка в Jenkins](#-сборка-в-jenkins)
 - [Пример Allure-отчета](#-пример-allure-отчета)
 - [Уведомления в Telegram с использованием бота](#-уведомления-в-telegram-с-использованием-бота)
-- [Видео примера запуска теста в Selenoid](#-видео-примера-запуска-теста-в-selenoid)
+- [Примеры видео запуска тестов в Selenoid и Browserstack](#-примеры-видео-запуска-тестов-в-selenoid-и-browserstack)
 
 ## :computer: Использованный стек технологий
 
@@ -115,6 +115,18 @@ gradle clean webTests -Denv=remote
 <img title="Test Results in Alure" src="images/screenshots/allureReportTest.png">
 </p>
 
+### <img width="4%" style="vertical-align:middle" title="AllureTO" src="images/logo/AllureTO.svg"> Интеграция с Allure TestOps
+Тестовая сборка в Jenkins интегрирована с Allure TestOps. В Allure TestOps автоматически обновляется список тест-кейсов и результаты выполнения тестов.
+<p align="center">
+<img width="70%" title="Allure TestOps Cases - Feature view" src="images/screenshots/testOpsCasesFeature.png">
+</p>
+
+### Интеграция с Jira
+Также полученные из автотестов тест-кейсы прикреплены к задаче в Jira.
+<p align="center">
+<img width="70%" title="Allure TestOps Cases - Feature view" src="images/screenshots/jiraIntegration.png">
+</p>
+
 ### <img width="4%" style="vertical-align:middle" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
 
 После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне.
@@ -123,10 +135,10 @@ gradle clean webTests -Denv=remote
 <img width="70%" title="Telegram Notifications" src="images/screenshots/notificationExample.png">
 </p>
 
-### <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Selenoid.svg"><img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Browserstack.svg"> Примеры видео-аттачей из Selenoid и Browserstack
+### <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Selenoid.svg"><img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Browserstack.svg"> Примеры видео запуска тестов в Selenoid и Browserstack
 
 При запуске тестов в remote-окружении к каждому тесту в отчете прилагается видео.
-Пример видео из Selenoid
+<p>Пример видео из Selenoid</p>
 <p align="center">
   <img title="Selenoid Video" src="images/gif/selenoidVideoExample.gif">
 </p>
