@@ -1,4 +1,5 @@
-# Проект по автоматизации тестирования приложения Todoist <img width="4%" style="vertical-align:middle" title="Todoist" src="images/logo/Todoist.png">
+# Проект по автоматизации тестирования приложения Todoist
+<img width="100%" style="vertical-align:middle" title="Todoist" src="images/screenshots/todoist.jpeg">
 
 ## :pushpin: Содержание:
 
@@ -11,24 +12,27 @@
 - [Уведомления в Telegram с использованием бота](#-уведомления-в-telegram-с-использованием-бота)
 - [Примеры видео запуска тестов в Selenoid и Browserstack](#-примеры-видео-запуска-тестов-в-selenoid-и-browserstack)
 
+## :open_book: Описание
+В проекте реализованы UI, API и Mobile тесты для веб и мобильного приложения Todoist.
+
 ## :computer: Использованный стек технологий
 
 <p align="center">
-<img width="6%" title="IntelliJ IDEA" src="images/logo/IntelijIDEA.svg">
-<img width="6%" title="Java" src="images/logo/Java.svg">
-<img width="6%" title="Selenide" src="images/logo/Selenide.svg">
-<img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
-<img width="6%" title="Allure TestOps" src="images/logo/AllureReport.svg">
-<img width="6%" title="Allure Report" src="images/logo/AllureTO.svg">
-<img width="6%" title="Gradle" src="images/logo/Gradle.svg">
-<img width="6%" title="JUnit5" src="images/logo/JUnit5.svg">
-<img width="6%" title="GitHub" src="images/logo/GitHub.svg">
-<img width="6%" title="Jenkins" src="images/logo/Jenkins.svg">
-<img width="6%" title="AndroidStudio" src="images/logo/AndroidStudio.svg">
-<img width="6%" title="Appium" src="images/logo/Appium.svg">
-<img width="6%" title="RestAssured" src="images/logo/RestAssured.png">
-<img width="6%" title="Browserstack" src="images/logo/Browserstack.svg">
-<img width="6%" title="Telegram" src="images/logo/Telegram.svg">
+<code><img width="6%" title="IntelliJ IDEA" src="images/logo/IntelijIDEA.svg"></code>
+<code><img width="6%" title="Java" src="images/logo/Java.svg"></code>
+<code><img width="6%" title="Selenide" src="images/logo/Selenide.svg"></code>
+<code><img width="6%" title="Selenoid" src="images/logo/Selenoid.svg"></code>
+<code><img width="6%" title="Allure TestOps" src="images/logo/AllureReport.svg"></code>
+<code><img width="6%" title="Allure Report" src="images/logo/AllureTO.svg"></code>
+<code><img width="6%" title="Gradle" src="images/logo/Gradle.svg"></code>
+<code><img width="6%" title="JUnit5" src="images/logo/JUnit5.svg"></code>
+<code><img width="6%" title="GitHub" src="images/logo/GitHub.svg"></code>
+<code><img width="6%" title="Jenkins" src="images/logo/Jenkins.svg"></code>
+<code><img width="6%" title="AndroidStudio" src="images/logo/AndroidStudio.svg"></code>
+<code><img width="5%" title="Appium" src="images/logo/Appium.svg"></code>
+<code><img width="5%" title="RestAssured" src="images/logo/RestAssured.png"></code>
+<code><img width="6%" title="Browserstack" src="images/logo/Browserstack.svg"></code>
+<code><img width="6%" title="Telegram" src="images/logo/Telegram.svg"></code>
 </p>
 
 Автотесты написаны на <code>Java</code> с использованием <code>JUnit 5</code> и <code>Gradle</code>.
