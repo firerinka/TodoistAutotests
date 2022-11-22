@@ -16,7 +16,7 @@ import static helpers.Cookie.setCookieStep;
 @Owner("m.remneva")
 @Tag("web")
 @Layer("web")
-@Feature("Задачи 'Сегодня'")
+@Feature("Задачи на 'Сегодня'")
 public class TodayTasksTests extends UITestBase {
 
     private static TodayPage todayPage = new TodayPage();
