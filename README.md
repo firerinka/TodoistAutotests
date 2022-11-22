@@ -133,5 +133,5 @@ gradle clean webTests -Denv=remote
 
 Пример видео из Browserstack
 <p align="center">
-  <img title="Selenoid Video" src="images/gif/browserstackVideoExample.gif">
+  <img width="80%" title="Selenoid Video" src="images/gif/browserstackVideoExample.gif">
 </p>

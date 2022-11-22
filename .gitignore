@@ -40,3 +40,5 @@ target/
 .vscode
 /gradlew
 /gradlew.bat
+
+.DS_Store
