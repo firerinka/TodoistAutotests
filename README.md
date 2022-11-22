@@ -125,13 +125,13 @@ gradle clean webTests -Denv=remote
 ### <img width="4%" style="vertical-align:middle" title="AllureTO" src="images/logo/AllureTO.svg"> Интеграция с Allure TestOps
 Тестовая сборка в Jenkins интегрирована с Allure TestOps. В Allure TestOps автоматически обновляется список тест-кейсов и результаты выполнения тестов.
 <p align="center">
-<img width="70%" title="Allure TestOps Cases - Feature view" src="images/screenshots/testOpsCasesFeature.png">
+<img width="100%" title="Allure TestOps Cases - Feature view" src="images/screenshots/testOpsCasesFeature.png">
 </p>
 
 ### Интеграция с Jira
 Также полученные из автотестов тест-кейсы прикреплены к задаче в Jira.
 <p align="center">
-<img width="70%" title="Allure TestOps Cases - Feature view" src="images/screenshots/jiraIntegration.png">
+<img width="100%" title="Allure TestOps Cases - Feature view" src="images/screenshots/jiraIntegration.png">
 </p>
 
 ### <img width="4%" style="vertical-align:middle" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
