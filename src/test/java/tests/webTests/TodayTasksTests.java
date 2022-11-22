@@ -4,6 +4,7 @@ import allure.Layer;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import pageObjects.pages.TodayPage;
 
@@ -15,7 +16,6 @@ import static helpers.Cookie.setCookieStep;
 @Owner("m.remneva")
 @Tag("web")
 @Layer("web")
-@Epic("Задачи")
 @Feature("Задачи 'Сегодня'")
 public class TodayTasksTests extends UITestBase {
 
@@ -29,6 +29,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
+    @Story("Создание задач")
     @DisplayName("Создание новой задачи")
     public void taskCreationTest() {
         open(URL_PART);
@@ -41,6 +42,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
+    @Story("Создание задач")
     @DisplayName("Создание нескольких задач")
     public void tasksCreationTest() {
         open(URL_PART);
@@ -57,6 +59,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
+    @Story("Редактирование задач")
     @DisplayName("Редактирования существующей задачи")
     public void taskEditingTest() {
         String taskTitle1 = "title1";
@@ -76,6 +79,7 @@ public class TodayTasksTests extends UITestBase {
     }
 
     @Test
+    @Story("Завершение задач")
     @DisplayName("Завершение существующей задачи")
     public void taskCompletionTest() {
         String taskTitle = "title";

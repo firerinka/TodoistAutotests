@@ -4,10 +4,7 @@ import allure.Layer;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.AppiumBy;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Owner;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -21,10 +18,10 @@ import static io.qameta.allure.Allure.step;
 @Owner("m.remneva")
 @Tag("mobile")
 @Layer("mobile")
-@Epic("Задачи")
-@Feature("Задачи 'Сегодня'")
+@Feature("Задачи на 'Сегодня'")
 public class TodayTasksTests extends MobileTestBase {
     @Test
+    @Story("Создание задач")
     @DisplayName("Создание новой задачи")
     public void taskCreationTest() {
         login();
@@ -40,6 +37,7 @@ public class TodayTasksTests extends MobileTestBase {
     }
 
     @Test
+    @Story("Завершение задач")
     @DisplayName("Завершение существующей задачи")
     public void taskCompletionTest() {
         String taskTitle = "title";
@@ -59,6 +57,7 @@ public class TodayTasksTests extends MobileTestBase {
     }
 
     @Test
+    @Story("Удаление задач")
     @DisplayName("Удаление существующей задачи")
     public void taskDeletionTest() {
         String taskTitle = "title";
@@ -82,6 +81,7 @@ public class TodayTasksTests extends MobileTestBase {
     }
 
     @Test
+    @Story("Редактирование задач")
     @DisplayName("Редактирование существующей задачи")
     public void taskEditionTest() {
         String taskTitle = "title";

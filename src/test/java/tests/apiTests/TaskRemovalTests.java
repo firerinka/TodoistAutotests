@@ -2,9 +2,9 @@ package tests.apiTests;
 
 import allure.Layer;
 import api.models.responses.TaskResponse;
-import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("m.remneva")
 @Layer("rest")
 @Tag("api")
-@Epic("Задачи")
-@Feature("Удаление задач")
+@Feature("Задачи")
+@Story("Удаление задач")
 public class TaskRemovalTests extends ApiTestBase {
     @Test
     @DisplayName("Удаления существующей задачи")
