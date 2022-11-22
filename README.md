@@ -38,6 +38,7 @@ API тесты используют фреймворк [RestAssured](https://res
 
 Allure-отчет включает в себя:
 * шаги выполнения тестов;
+* логирование отправленных API запросов
 * скриншот страницы в браузере в момент окончания автотеста;
 * Page Source;
 * логи браузерной консоли;
@@ -46,13 +47,19 @@ Allure-отчет включает в себя:
 ## :running_woman: Запуск тестов
 
 ### Локальный запуск тестов
+Запуск web-тестов
 ```
-gradle clean test -Denv=local
+gradle clean webTests -Denv=local
 ```
+Запуск тестов на мобильное приложение в эмуляторе
+```
+gradle clean mobileTests -Denv=local -DdeviceHost=emulation
+```
+
 
 При необходимости можно переопределить параметры запуска
 ```
-gradle clean test
+gradle clean webTests
 -Denv=local
 -Dbrowser=${BROWSER_NAME}
 -DbrowserVersion=${BROWSER_VERSION}
@@ -61,15 +68,22 @@ gradle clean test
 ```
 
 ### Запуск тестов на удаленном браузере
+Для запуска web-тестов в selenoid
 ```
-gradle clean test -Denv=remote
+gradle clean webTests -Denv=remote
 ```
+
+Запуск тестов на мобильное приложение в Browserstack
+```
+gradle clean mobileTests -Denv=remote -DdeviceHost=browserstack
+```
+
 При необходимости также можно переопределить параметры запуска
 
 ```
-gradle clean test -Denv=remote
+gradle clean webTests -Denv=remote
 -Dbrowser=${BROWSER_NAME}
--DbrowserМersion=${BROWSER_VERSION}
+-DbrowserVersion=${BROWSER_VERSION}
 -DbrowserSize=${BROWSER_SIZE}
 -DbaseUrl=${BASE_URL}
 -DremoteUrl=${REMOTE_BROWSER_URL}
@@ -98,7 +112,7 @@ gradle clean test -Denv=remote
 ### Результат выполнения теста
 
 <p align="center">
-<img title="Test Results in Alure" src="images/screenshots/allureReportTests.png">
+<img title="Test Results in Alure" src="images/screenshots/allureReportTest.png">
 </p>
 
 ### <img width="4%" style="vertical-align:middle" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
@@ -109,9 +123,15 @@ gradle clean test -Denv=remote
 <img width="70%" title="Telegram Notifications" src="images/screenshots/notificationExample.png">
 </p>
 
-### <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Selenoid.svg"> Видео примера запуска теста в Selenoid
+### <img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Selenoid.svg"><img width="4%" style="vertical-align:middle" title="Selenoid" src="images/logo/Browserstack.svg"> Примеры видео-аттачей из Selenoid и Browserstack
 
-К каждому тесту в отчете прилагается видео. Одно из таких видео представлено ниже.
+При запуске тестов в remote-окружении к каждому тесту в отчете прилагается видео.
+Пример видео из Selenoid
 <p align="center">
-  <img title="Selenoid Video" src="images/gif/videoExample.gif">
+  <img title="Selenoid Video" src="images/gif/selenoidVideoExample.gif">
+</p>
+
+Пример видео из Browserstack
+<p align="center">
+  <img title="Selenoid Video" src="images/gif/browserstackVideoExample.gif">
 </p>
