@@ -23,7 +23,7 @@ public class AuthTests extends UITestBase {
     private TodayPage todayPage = new TodayPage();
 
     @Test
-    @DisplayName("Авторизации с верными данными")
+    @DisplayName("Авторизация с верными данными")
     public void successfulAuthTest() {
         step("Открываем страницу авторизации", () ->
             open(URL_PART)
