@@ -1,12 +1,10 @@
-package pageObjects.pages;
+package pages.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import pageObjects.elements.Button;
+import pages.components.*;
+import pages.elements.Button;
 import io.qameta.allure.Step;
-import pageObjects.components.TaskEditor;
-import pageObjects.components.TaskItem;
-import pageObjects.components.TaskItems;
 
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
@@ -19,6 +17,8 @@ public class TodayPage {
     private final TaskEditor taskEditor = new TaskEditor("taskEditor", $(".task_editor"));
     private final TaskItem taskItem = new TaskItem("taskItem", $(".task_list_item__content"));
     private final TaskItems taskItems = new TaskItems("taskItems", $$(".task_list_item"));
+    private final TopBar topBar = new TopBar("topBar", $("#top_bar"));
+    private final UserMenu userMenu = new UserMenu("userMenu", $(".user_menu"));
 
     @Step("Проверяем, что заголовок страницы - это '{value}'")
     public TodayPage checkTitle(String value) {
@@ -96,6 +96,12 @@ public class TodayPage {
     @Step("Удаляем все задачи со страницы 'Сегодня'")
     public void removeAllTasks(){
         taskItems.removeAllTasks();
+    }
+
+    @Step("Проверяем, что залогинены под верным пользователем")
+    public void checkCurrentUser(String value) {
+        topBar.openUserMenu();
+        userMenu.checkUserEmail(value);
     }
 
 }

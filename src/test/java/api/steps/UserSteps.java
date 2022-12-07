@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 import static java.util.Arrays.asList;
 
 public class UserSteps {
-    @Step("API: Устанавливаем таймзону пользователя '{timezoneValue}'")
+    @Step("API: Устанавливаем для пользователя таймзону '{timezoneValue}'")
     public static void setTimezone(String timezoneValue) {
         UserUpdateRequest timezone = new UserUpdateRequest();
         timezone.setType("user_update");
@@ -23,7 +23,7 @@ public class UserSteps {
 
         given()
                 .filter(withCustomTemplates())
-                .baseUri("https://api.todoist.com/sync/v9/sync")
+                .baseUri(ProjectConfiguration.TEST_CONFIG.syncApiUrl())
                 .header("Authorization", "Bearer " + ProjectConfiguration.getApiToken())
                 .multiPart("commands", asList(timezone))
                 .log().all()

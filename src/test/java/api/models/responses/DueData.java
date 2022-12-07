@@ -9,6 +9,7 @@ public class DueData {
     @JsonProperty("string")
     private String dueString;
     private String lang;
-    private String is_recurring;
+    @JsonProperty("is_recurring")
+    private String isRecurring;
 
 }

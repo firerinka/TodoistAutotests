@@ -1,14 +1,14 @@
 package tests.webTests;
 
-import allure.Layer;
-import io.qameta.allure.Epic;
+import api.steps.TaskCreationApiSteps;
+import helpers.allureAnnotations.Layer;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import pageObjects.pages.TodayPage;
+import pages.pages.TodayPage;
 
-import static api.steps.TaskCreationApiSteps.newTaskCreation;
+import static api.steps.TaskCreationApiSteps.createNewTask;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static com.codeborne.selenide.Selenide.*;
 import static helpers.Cookie.setCookieStep;
@@ -66,7 +66,7 @@ public class TodayTasksTests extends UITestBase {
         String taskDescription1 = "description1";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle1, taskDescription1, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle1, taskDescription1, taskDue);
 
         open(URL_PART);
         todayPage.checkTaskItemContent(taskTitle1, taskDescription1);
@@ -86,7 +86,7 @@ public class TodayTasksTests extends UITestBase {
         String taskDescription = "description";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle, taskDescription, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle, taskDescription, taskDue);
 
         open(URL_PART);
 
@@ -102,7 +102,7 @@ public class TodayTasksTests extends UITestBase {
         String taskDescription = "description";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle, taskDescription, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle, taskDescription, taskDue);
 
         open(URL_PART);
 

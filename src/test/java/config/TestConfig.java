@@ -5,6 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
+        "classpath:config/user.properties",
         "classpath:config/${env}.properties",
         "classpath:config/mobile.${deviceHost}.properties",
         "file:~/${env}.properties",
@@ -31,6 +32,10 @@ public interface TestConfig extends Config {
     @DefaultValue("https://api.todoist.com/rest/v2/")
     String apiUrl();
 
+    @Key("syncApiUrl")
+    @DefaultValue("https://api.todoist.com/sync/v9/sync")
+    String syncApiUrl();
+
     @Key("apiToken")
     @DefaultValue("77a110ac1192de22ec0e4a9038d30bfe7fd5ce32")
     String apiToken();
@@ -50,49 +55,49 @@ public interface TestConfig extends Config {
     @DefaultValue("Europe/Moscow")
     String timezone();
 
-    @Key("browserstack.userName")
+    @Key("browserstackUserName")
     String browserstackUserName();
 
-    @Key("browserstack.password")
+    @Key("browserstackPassword")
     String browserstackPassword();
 
-    @Key("app.appUrl")
+    @Key("appUrl")
     String appUrl();
 
-    @Key("app.package")
+    @Key("appPackage")
     @DefaultValue("com.todoist")
     String appPackage();
 
-    @Key("app.activity")
+    @Key("appActivity")
     @DefaultValue("com.todoist.alias.HomeActivityDefault")
     String appActivity();
 
-    @Key("app.name")
+    @Key("appName")
     @DefaultValue("todoist.apk")
     String appName();
 
-    @Key("device.deviceName")
+    @Key("deviceName")
     @DefaultValue("Pixel_4_API_30")
     String mobileDeviceName();
 
-    @Key("device.os_version")
+    @Key("osVersion")
     @DefaultValue("11.0")
     String mobileDeviceOsVersion();
 
-    @Key("device.platformName")
+    @Key("platformName")
     @DefaultValue("Android")
     String mobilePlatformName();
 
-    @Key("browserstack.project")
+    @Key("browserstackProject")
     String browserstackProject();
 
-    @Key("browserstack.build")
+    @Key("browserstackBuild")
     String browserstackBuild();
 
-    @Key("browserstack.testsName")
+    @Key("browserstackTestsName")
     String browserstackTestsName();
 
-    @Key("server.remoteUrl")
+    @Key("mobileServerRemoteUrl")
     @DefaultValue("http://localhost:4723/wd/hub")
     String mobileServerRemoteUrl();
 
@@ -100,6 +105,12 @@ public interface TestConfig extends Config {
     @DefaultValue("EMULATION")
     MobileEnvironment mobileEnv();
 
-    @Key("browserstack.sessionsUrl")
+    @Key("browserstackSessionsUrl")
     String browserstackSessionsUrl();
+
+    @Key("email")
+    String userEmail();
+
+    @Key("password")
+    String userPassword();
 }

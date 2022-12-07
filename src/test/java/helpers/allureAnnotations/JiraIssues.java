@@ -1,6 +1,4 @@
-package allure;
-
-import io.qameta.allure.LabelAnnotation;
+package helpers.allureAnnotations;
 
 import java.lang.annotation.*;
 
@@ -8,9 +6,8 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
-@LabelAnnotation(name = "page")
-public @interface PagePath {
+public @interface JiraIssues {
 
-    String value();
+    JiraIssue[] value();
 
 }

@@ -1,6 +1,8 @@
 package tests.mobileTests;
 
-import allure.Layer;
+import api.steps.TaskCreationApiSteps;
+import config.ProjectConfiguration;
+import helpers.allureAnnotations.Layer;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.AppiumBy;
@@ -10,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
@@ -44,7 +45,7 @@ public class TodayTasksTests extends MobileTestBase {
         String taskDescription = "description";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle, taskDescription, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle, taskDescription, taskDue);
 
         login();
         step("Завершаем задачу", () -> {
@@ -64,7 +65,7 @@ public class TodayTasksTests extends MobileTestBase {
         String taskDescription = "description";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle, taskDescription, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle, taskDescription, taskDue);
 
         login();
 
@@ -88,7 +89,7 @@ public class TodayTasksTests extends MobileTestBase {
         String taskDescription = "description";
         String taskDue = "Сегодня";
 
-        newTaskCreation(taskTitle, taskDescription, taskDue);
+        TaskCreationApiSteps.createNewTask(taskTitle, taskDescription, taskDue);
 
         login();
         String title2 = "title2";
@@ -111,14 +112,12 @@ public class TodayTasksTests extends MobileTestBase {
         });
     }
 
-    @Step("Авторизуемся в приложении и закрываем баннер про таймзону")
+    @Step("Авторизуемся в приложении")
     public void login() {
-        String email = "m.remneva.test@gmail.com";
-        String pwd = "5YHEiSRquW2u";
         $(AppiumBy.id("com.todoist:id/btn_welcome_email")).click();
-        $(AppiumBy.id("com.todoist:id/email_exists_input")).sendKeys(email);
+        $(AppiumBy.id("com.todoist:id/email_exists_input")).sendKeys(ProjectConfiguration.TEST_CONFIG.userEmail());
         $(AppiumBy.id("com.todoist:id/btn_continue_with_email")).click();
-        $(AppiumBy.id("com.todoist:id/log_in_password")).sendKeys(pwd);
+        $(AppiumBy.id("com.todoist:id/log_in_password")).sendKeys(ProjectConfiguration.TEST_CONFIG.userPassword());
         $(AppiumBy.id("com.todoist:id/btn_log_in")).click();
         $(AppiumBy.id("com.todoist:id/toolbar")).should(Condition.exist);
     }

@@ -19,7 +19,7 @@ public class UITestBase {
     @BeforeAll
     public static void setup() {
         UserSteps.setTimezone(config.timezone());
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("helpers/allureAnnotations", new AllureSelenide());
         ProjectConfiguration.webConfig();
         ProjectConfiguration.apiConfig();
     }

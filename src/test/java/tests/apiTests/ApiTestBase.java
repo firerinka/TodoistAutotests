@@ -14,7 +14,7 @@ public class ApiTestBase {
 
     @BeforeAll
     public static void setUp() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("helpers/allureAnnotations", new AllureSelenide());
         ProjectConfiguration.apiConfig();
     }
 

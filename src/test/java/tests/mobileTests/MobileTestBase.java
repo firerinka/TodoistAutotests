@@ -9,7 +9,7 @@ import config.ProjectConfiguration;
 import config.TestConfig;
 import drivers.BrowserstackMobileDriver;
 import drivers.LocalMobileDriver;
-import helpers.AttachToRemove;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,7 +28,7 @@ public class MobileTestBase {
     @BeforeAll
     public static void setup() throws Exception {
         UserSteps.setTimezone(config.timezone());
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("helpers/allureAnnotations", new AllureSelenide());
         ProjectConfiguration.apiConfig();
 
         if (config.mobileEnv().equals(BROWSERSTACK)) {
@@ -51,13 +51,13 @@ public class MobileTestBase {
 
     @AfterEach
     public void addAttachments() {
-        AttachToRemove.screenshotAs("Last screenshot");
-        AttachToRemove.pageSource();
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
 
         if (config.mobileEnv().equals(BROWSERSTACK)) {
             String sessionId = sessionId().toString();
             closeWebDriver();
-            AttachToRemove.video(sessionId);
+            Attach.addMobileVideo(sessionId);
         } else {
             Selenide.closeWebDriver();
         }

@@ -1,6 +1,7 @@
 package tests.apiTests;
 
-import allure.Layer;
+import api.steps.TaskCreationApiSteps;
+import helpers.allureAnnotations.Layer;
 import api.models.responses.TaskResponse;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static api.steps.TaskCreationApiSteps.newTaskCreation;
 import static api.steps.TaskApiSteps.*;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static io.qameta.allure.Allure.step;
@@ -29,7 +29,7 @@ public class TaskCompletionTests extends ApiTestBase {
         String description = "Description";
         String due = "Сегодня";
 
-        TaskResponse response = newTaskCreation(content, description, due);
+        TaskResponse response = TaskCreationApiSteps.createNewTask(content, description, due);
         assertThat(isTaskExistsById(response.getId())).isTrue();
         assertThat(response.getIsCompleted()).isFalse();
 
@@ -49,7 +49,7 @@ public class TaskCompletionTests extends ApiTestBase {
         String description = "Description";
         String due = "Сегодня";
 
-        TaskResponse response = newTaskCreation(content, description, due);
+        TaskResponse response = TaskCreationApiSteps.createNewTask(content, description, due);
         completeTask(response.getId());
         reopenTask(response.getId());
 

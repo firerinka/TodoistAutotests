@@ -9,19 +9,19 @@ import static io.restassured.RestAssured.given;
 
 public class TaskCreationApiSteps {
     @Step("API: создаем новую задачу с параметрами 'content'='{content}', 'description'='{description}', 'due_string'='{due}'")
-    public static TaskResponse newTaskCreation(String content, String description, String due) {
+    public static TaskResponse createNewTask(String content, String description, String due) {
         TaskRequest request = new TaskRequest();
         request.setContent(content);
         request.setDescription(description);
         request.setDueString(due);
 
-        TaskResponse response = newTaskCreation(request);
+        TaskResponse response = createNewTask(request);
 
         return response;
     }
 
     @Step("API: создаем новую задачу")
-    public static TaskResponse newTaskCreation(TaskRequest request) {
+    public static TaskResponse createNewTask(TaskRequest request) {
         TaskResponse response = given()
                 .spec(taskRequestSpec)
                 .body(request)
@@ -36,7 +36,7 @@ public class TaskCreationApiSteps {
     }
 
     @Step("API: пытаемся создать новую задачу без задания обязательного параметра 'content'")
-    public static String newTaskCreationWithError(String description, String due) {
+    public static String createNewTaskWithError(String description, String due) {
         TaskRequest request = new TaskRequest();
         request.setDescription(description);
         request.setDueString(due);

@@ -1,6 +1,7 @@
 package tests.apiTests;
 
-import allure.Layer;
+import api.steps.TaskCreationApiSteps;
+import helpers.allureAnnotations.Layer;
 import api.models.requests.TaskRequest;
 import api.models.responses.TaskResponse;
 import io.qameta.allure.Feature;
@@ -11,8 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static api.steps.TaskCreationApiSteps.newTaskCreation;
-import static api.steps.TaskCreationApiSteps.newTaskCreationWithError;
+import static api.steps.TaskCreationApiSteps.createNewTask;
+import static api.steps.TaskCreationApiSteps.createNewTaskWithError;
 import static api.steps.TaskRemovalApiSteps.cleanupAllTasks;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +31,7 @@ public class TaskCreationTests extends ApiTestBase {
         String description = "Description";
         String due = "Сегодня";
 
-        TaskResponse response = newTaskCreation(content, description, due);
+        TaskResponse response = TaskCreationApiSteps.createNewTask(content, description, due);
 
         step("Проверяем контент созданной задачи", () -> {
             assertThat(response.getContent()).isEqualTo(content);
@@ -47,7 +48,7 @@ public class TaskCreationTests extends ApiTestBase {
         TaskRequest request = new TaskRequest();
         request.setContent(content);
 
-        TaskResponse response = newTaskCreation(request);
+        TaskResponse response = createNewTask(request);
 
         step("Проверяем контент созданной задачи", () -> {
             assertThat(response.getContent()).isEqualTo(content);
@@ -61,7 +62,7 @@ public class TaskCreationTests extends ApiTestBase {
         String description = "Description";
         String due = "Сегодня";
 
-        String response = newTaskCreationWithError(description, due);
+        String response = createNewTaskWithError(description, due);
 
         step("Проверяем корректность сообщения об ошибке", () ->
                 assertThat(response).isEqualTo("Required argument is missing")
